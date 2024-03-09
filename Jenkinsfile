@@ -10,6 +10,12 @@ pipeline {
             ansiColor('xterm')
         }
 
+        parameters {
+
+              string(name: 'component', defaultValue: '', description: 'Provide Component Name')
+
+        }
+
         stages {
 
             stage('Clone APP Repo') {
