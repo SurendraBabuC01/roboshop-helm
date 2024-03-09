@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "roboshop.fullname" . }}
+  name: {{ .Values.appName }}
   labels:
     {{- include "roboshop.labels" . | nindent 4 }}
 spec:
