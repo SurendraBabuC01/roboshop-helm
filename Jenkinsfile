@@ -14,6 +14,8 @@ pipeline {
 
               string(name: 'component', defaultValue: '', description: 'Provide Component Name')
 
+              string(name: 'app_version', defaultValue: '', description: 'Provide APP Version')
+
         }
 
         stages {
