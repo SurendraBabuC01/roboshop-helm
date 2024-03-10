@@ -25,6 +25,9 @@ pipeline {
                     dir('APP') {
                         git branch: 'main', url: 'https://github.com/SurendraBabuC01/${component}.git'
                     }
+                        dir('HELM') {
+                        git branch: 'main', url: 'https://github.com/SurendraBabuC01/roboshop-helm.git'
+                    }
                 }
             }
 
