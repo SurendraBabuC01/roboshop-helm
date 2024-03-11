@@ -31,6 +31,9 @@ spec:
         - name: aws-ssm-ps
           image: 127710927797.dkr.ecr.us-east-1.amazonaws.com/aws-ssm-parameter-store:latest
           imagePullPolicy: Always
+          env:
+            - name: PARAMS
+              value: {{ .Values.params }}
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
