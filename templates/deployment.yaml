@@ -20,6 +20,10 @@ spec:
       labels:
         {{- include "roboshop.selectorLabels" . | nindent 8 }}
     spec:
+      volumes:
+        - name: params-volume
+          emptyDir:
+            sizeLimit: 5Mi
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
@@ -34,12 +38,18 @@ spec:
           env:
             - name: PARAMS
               value: {{ .Values.params }}
+          volumeMounts:
+            - mountPath: /params
+              name: params-volume
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: 127710927797.dkr.ecr.us-east-1.amazonaws.com/{{ .Values.appName }}:{{ .Values.app_version }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          volumeMounts:
+            - mountPath: /params
+              name: params-volume
           ports:
             - name: http
               containerPort: 80
